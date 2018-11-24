@@ -1,0 +1,9 @@
+c:\users\tu.nguyenduy\documents\visual studio 2015\Projects\XoaTepTinTheoSoDong\XoaTepTinTheoSoDong\bin\Debug\XoaTepTinTheoSoDong.exe.config
+c:\users\tu.nguyenduy\documents\visual studio 2015\Projects\XoaTepTinTheoSoDong\XoaTepTinTheoSoDong\bin\Debug\XoaTepTinTheoSoDong.exe
+c:\users\tu.nguyenduy\documents\visual studio 2015\Projects\XoaTepTinTheoSoDong\XoaTepTinTheoSoDong\bin\Debug\XoaTepTinTheoSoDong.pdb
+c:\users\tu.nguyenduy\documents\visual studio 2015\Projects\XoaTepTinTheoSoDong\XoaTepTinTheoSoDong\obj\Debug\XoaTepTinTheoSoDong.csprojResolveAssemblyReference.cache
+c:\users\tu.nguyenduy\documents\visual studio 2015\Projects\XoaTepTinTheoSoDong\XoaTepTinTheoSoDong\obj\Debug\XoaTepTinTheoSoDong.Form1.resources
+c:\users\tu.nguyenduy\documents\visual studio 2015\Projects\XoaTepTinTheoSoDong\XoaTepTinTheoSoDong\obj\Debug\XoaTepTinTheoSoDong.Properties.Resources.resources
+c:\users\tu.nguyenduy\documents\visual studio 2015\Projects\XoaTepTinTheoSoDong\XoaTepTinTheoSoDong\obj\Debug\XoaTepTinTheoSoDong.csproj.GenerateResource.Cache
+c:\users\tu.nguyenduy\documents\visual studio 2015\Projects\XoaTepTinTheoSoDong\XoaTepTinTheoSoDong\obj\Debug\XoaTepTinTheoSoDong.exe
+c:\users\tu.nguyenduy\documents\visual studio 2015\Projects\XoaTepTinTheoSoDong\XoaTepTinTheoSoDong\obj\Debug\XoaTepTinTheoSoDong.pdb
