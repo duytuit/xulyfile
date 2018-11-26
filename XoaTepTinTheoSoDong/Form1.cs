@@ -26,8 +26,8 @@ namespace XoaTepTinTheoSoDong
                 Environment.SpecialFolder root = folderDlg.RootFolder;
                 foreach (FileInfo file in Files)
                 {
-                     var path = new TestPath(file);
-                    listBox1.Items.Add(path);
+                   //  var path = new TestPath(file);
+                    listBox1.Items.Add(file);
                     Soluongview1.Text = listBox1.Items.Count.ToString();
                 }
             }
@@ -36,16 +36,16 @@ namespace XoaTepTinTheoSoDong
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             listBox3.Items.Clear();
-            var currentItem = listBox1.SelectedItem as TestPath;
-            if (currentItem != null)
+            FileInfo file = listBox1.SelectedItem as FileInfo;
+           
+            if (file != null)
             {
-                string resuls = currentItem.Original.FullName;
-
-                string[] items = File.ReadAllLines(resuls);
+                string entry = file.FullName;
+                string[] items = File.ReadAllLines(entry);
                 foreach (string item in items)
                 {
                     listBox3.Items.Add(item);
-                    
+
                 }
             }
             else
@@ -89,9 +89,10 @@ namespace XoaTepTinTheoSoDong
                 {
                    
                     listBox1.SetSelected(i, true);
-                    var currentItem = listBox1.SelectedItem as TestPath;
-                    int dongmuonxoa = TotalLines(txtValue.Text.Trim(), currentItem.Original.FullName);
-                    string[] lines = File.ReadAllLines(currentItem.Original.FullName);
+                    FileInfo file = listBox1.SelectedItem as FileInfo;
+                    string entry = file.FullName;
+                    int dongmuonxoa = TotalLines(txtValue.Text.Trim(), entry);
+                    string[] lines = File.ReadAllLines(entry);
                     List<string> new1 = new List<string>();
 
                     for (int a = dongmuonxoa; a < lines.Count(); a++)
@@ -103,7 +104,7 @@ namespace XoaTepTinTheoSoDong
                     //listBox2.DataSource = new1;
                     //Du lieu la new1---------------->luu vao filePath
 
-                    filePath = folderDlg.SelectedPath + @"\" + currentItem.Original.Name;
+                    filePath = folderDlg.SelectedPath + @"\" + listBox1.SelectedItem.ToString();
                     StreamWriter objWriter = new StreamWriter(filePath);
                     for (int b = 0; b < new1.Count(); b++)
                     {
@@ -118,8 +119,7 @@ namespace XoaTepTinTheoSoDong
                 Environment.SpecialFolder root = folderDlg.RootFolder;
                 foreach (FileInfo file in Files)
                 {
-                    var path = new TestPath(file);
-                    listBox2.Items.Add(path);
+                    listBox2.Items.Add(file);
                     Soluongview2.Text = listBox1.Items.Count.ToString();
                 }
                 listBox2.SetSelected(0, true);
@@ -148,18 +148,18 @@ namespace XoaTepTinTheoSoDong
 
             listBox4.Items.Clear();
             listBox1.SetSelected(listBox2.SelectedIndex, true);
-            if(listBox2.SelectedIndex>=1)
+            if (listBox2.SelectedIndex >= 1)
             {
-                listBox1.SetSelected(listBox2.SelectedIndex-1, false);
+                listBox1.SetSelected(listBox2.SelectedIndex - 1, false);
                 listBox1.SetSelected(listBox2.SelectedIndex, true);
-              
-            }
-            var currentItem = listBox2.SelectedItem as TestPath;
-            if (currentItem != null)
-            {
-                string resuls = currentItem.Original.FullName;
 
-                string[] items = File.ReadAllLines(resuls);
+            }
+            FileInfo file = listBox2.SelectedItem as FileInfo;
+            
+            if (file != null)
+            {
+                string entry = file.FullName;
+                string[] items = File.ReadAllLines(entry);
                 foreach (string item in items)
                 {
                     listBox4.Items.Add(item);
@@ -178,7 +178,7 @@ namespace XoaTepTinTheoSoDong
 
         private void listBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            listBox3.SetSelected(listBox4.SelectedIndex+Convert.ToInt32(soluongdelete.Text), true);
+            listBox3.SetSelected(listBox4.SelectedIndex + Convert.ToInt32(soluongdelete.Text), true);
             if (listBox4.SelectedIndex >= 1)
             {
                 listBox3.SetSelected(listBox4.SelectedIndex + Convert.ToInt32(soluongdelete.Text) - 1, false);
