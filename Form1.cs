@@ -26,11 +26,14 @@ namespace XoaTepTinTheoSoDong
                 Environment.SpecialFolder root = folderDlg.RootFolder;
                 foreach (FileInfo file in Files)
                 {
-                   //  var path = new TestPath(file);
+                    //  var path = new TestPath(file);
                     listBox1.Items.Add(file);
                     Soluongview1.Text = listBox1.Items.Count.ToString();
                 }
+                btnDeleteLine.Enabled = true;
             }
+            else
+                btnDeleteLine.Enabled = false;
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -92,21 +95,34 @@ namespace XoaTepTinTheoSoDong
                     FileInfo file = listBox1.SelectedItem as FileInfo;
                     string entry = file.FullName;
                     int dongmuonxoa = TotalLines(txtValue.Text.Trim(), entry);
-                    string[] lines = File.ReadAllLines(entry);
+                    List<string> lines = File.ReadAllLines(entry).ToList();
                     List<string> new1 = new List<string>();
 
-                    for (int a = dongmuonxoa; a < lines.Count(); a++)
+                    for (int a = dongmuonxoa; a < lines.Count; a++)
                     {
                         string newlines = lines[a];
                         new1.Add(newlines);
                     }
+                    if(checkBox1.Checked==true)
+                    {
+                        if(file.Extension==".T3"|| file.Extension == ".B3")
+                        {
+                            int vitribatdau = GetT82(new1);
+                            int vitriden = GetT00(new1);
 
+                          for(int c = vitriden-1;c>=vitribatdau;c--)
+                            {
+                                new1.RemoveAt(c);
+                            }
+                        }
+                       
+                    }
                     //listBox2.DataSource = new1;
                     //Du lieu la new1---------------->luu vao filePath
 
                     filePath = folderDlg.SelectedPath + @"\" + listBox1.SelectedItem.ToString();
                     StreamWriter objWriter = new StreamWriter(filePath);
-                    for (int b = 0; b < new1.Count(); b++)
+                    for (int b = 0; b < new1.Count; b++)
                     {
                         objWriter.WriteLine(new1[b]);
                     }
@@ -142,7 +158,32 @@ namespace XoaTepTinTheoSoDong
             }
             return count;
         }
-
+        int GetT82(List<string> getT82)
+        {
+            int count = 0;
+            for (int i = getT82.Count-1; i > 0; i--)
+            {
+                if (getT82[i].ToString()==txtVitrixoa.Text.ToUpper())
+                {
+                    count = i;
+                    break;
+                }
+            }
+            return count;
+        }
+        int GetT00(List<string> getT00)
+        {
+            int count = 0;
+            for (int i = getT00.Count-1; i > 0; i--)
+            {
+                if (getT00[i].ToString() == txtDenvitri.Text.ToUpper())
+                {
+                    count = i;
+                    break;
+                }
+            }
+            return count;
+        }
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -197,6 +238,51 @@ namespace XoaTepTinTheoSoDong
             Soluongview2.Text = null;
             soluongview3.Text = null;
             soluongview4.Text = null;
+            btnDeleteLine.Enabled = false;
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+              checkBox1.Checked = false;
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBox1.Checked==true)
+            {
+                if (string.IsNullOrEmpty(txtVitrixoa.Text) || string.IsNullOrEmpty(txtDenvitri.Text))
+                {
+                    MessageBox.Show("Chưa nhập vị trí cần xóa!");
+                    checkBox1.Checked = false;
+                }
+            }
+               
+        }
+
+        private void txtVitrixoa_TextChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+                checkBox1.Checked = false;
+            }
         }
     }
 }
